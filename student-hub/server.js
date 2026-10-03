@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
@@ -247,8 +248,10 @@ app.get("/api/user/:id", async (req, res) => {
 // TEST ROUTE
 // ===============================
 
-app.get("/", (req, res) => {
-  res.send("StudentHub server is running 🚀");
+app.use(express.static(path.join(process.cwd(), "dist")));
+
+app.get("/{*splat}", (req, res) => {
+  res.sendFile(path.join(process.cwd(), "dist", "index.html"));
 });
 
 
