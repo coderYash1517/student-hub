@@ -48,17 +48,17 @@ function Login() {
         return;
       }
 
-      // Save logged-in user information
+      // Save account for Navbar and protected pages
       localStorage.setItem(
-        "studentHubUser",
+        "studenthub_account",
         JSON.stringify(data.user)
       );
 
       setSuccess("Login successful! Redirecting...");
 
       setTimeout(() => {
-        window.location.href = "/dashboard";
-      }, 1000);
+        window.location.href = "/";
+      }, 500);
 
     } catch (error) {
       console.error(error);
