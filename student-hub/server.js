@@ -14,7 +14,7 @@ app.use(express.json());
 // ===============================
 
 const MONGO_URI =
-  "mongodb+srv://studenthub_admin:Studenthub12345@cluster0.m6730ri.mongodb.net/?appName=Cluster0";
+process.env.MONGO_URI;  
 
 mongoose
   .connect(MONGO_URI)
