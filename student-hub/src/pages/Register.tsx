@@ -39,17 +39,20 @@ function Register() {
     try {
       setLoading(true);
 
-      const response = await fetch("http://localhost:5000/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          password,
-        }),
-      });
+      const response = await fetch(
+        "https://student-hub-p462.onrender.com/api/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: name.trim(),
+            email: email.trim(),
+            password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -63,12 +66,11 @@ function Register() {
       setTimeout(() => {
         window.location.href = "/login";
       }, 1000);
-
     } catch (error) {
       console.error(error);
 
       setError(
-        "Cannot connect to server. Make sure server.js is running."
+        "Cannot connect to server. Please check your internet connection."
       );
     } finally {
       setLoading(false);
@@ -77,7 +79,6 @@ function Register() {
 
   return (
     <div className="auth-page">
-
       <div className="auth-card">
 
         <div className="auth-logo">S</div>
@@ -187,7 +188,6 @@ function Register() {
         </p>
 
       </div>
-
     </div>
   );
 }
