@@ -1,12 +1,21 @@
 function Dashboard() {
-  const savedUser = localStorage.getItem("studenthub_user");
+  const savedUser = localStorage.getItem("studenthub_account");
 
   if (!savedUser) {
     window.location.href = "/login";
     return null;
   }
 
-  const user = JSON.parse(savedUser);
+  let user;
+
+  try {
+    user = JSON.parse(savedUser);
+  } catch (error) {
+    console.error("Invalid saved user data:", error);
+    localStorage.removeItem("studenthub_account");
+    window.location.href = "/login";
+    return null;
+  }
 
   const name = user.name || "Student";
   const attendance = user.attendance ?? 84;
